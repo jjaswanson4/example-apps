@@ -1,0 +1,28 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: control
+  labels:
+    app.kubernetes.io/name: control
+    app.kubernetes.io/part-of: process-control
+    application: control
+spec:
+  selector:
+    matchLabels:
+      application: control
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: control
+        app.kubernetes.io/part-of: process-control
+        application: control
+    spec:
+      containers:
+      - name: control
+        image: quay.io/device-edge-workshops/process-control-control-k8s:4.0.0
+        resources:
+          limits:
+            memory: 250Mi
+            cpu: 100m

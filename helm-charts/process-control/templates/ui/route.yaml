@@ -1,0 +1,17 @@
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: process-control-ui-route
+  annotations:
+    haproxy.router.openshift.io/rewrite-target: /ui
+  labels:
+    app.kubernetes.io/part-of: process-control
+spec:
+  to:
+    kind: Service
+    name: ui
+  port:
+    targetPort: 1880
+  tls:
+    termination: edge
